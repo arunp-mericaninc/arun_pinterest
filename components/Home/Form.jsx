@@ -1,6 +1,6 @@
 "use client"
 import React,{useState} from 'react'
-import { useSession} from "next-auth/react"
+import { signIn, useSession} from "next-auth/react"
 import {getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage"
 import { doc, getFirestore, setDoc } from 'firebase/firestore'
 import { useRouter } from 'next/navigation'
@@ -25,6 +25,9 @@ const Form=()=>{
        uploadFile();
    
 
+    }
+    if (session===null) {
+        signIn()
     }
 
     const uploadFile=()=>{

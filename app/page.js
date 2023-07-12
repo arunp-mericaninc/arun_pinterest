@@ -13,7 +13,9 @@ export default function Home() {
   const db = getFirestore(app)
   const [post, setPost] = useState([])
   useEffect(()=>{
-    getPost()
+    if(session!==null){
+      getPost()
+    }
   },[session])
   const getPost = async()=>{
     
