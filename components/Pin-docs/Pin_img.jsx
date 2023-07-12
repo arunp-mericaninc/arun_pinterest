@@ -11,10 +11,10 @@ const Pin_img = ({post,session}) => {
     }
     console.log(post);
   return (
-    <div className='columns-1 md:columns-2 lg:columns-4 xl:columns-5 space-y-6 m-4 ' >
+    <div className='columns-1 md:columns-2 lg:columns-4 xl:columns-5  space-y-6 m-4 ' >
         {post.map((item)=>{
             return(
-                <div key={item.id} onClick={()=>handlePost(item.id)} className='flex flex-col items-center gap-1'>
+                <div key={item.id} onClick={()=>handlePost(item.id)} className='flex flex-col hover:bg-slate-100 rounded-3xl items-center gap-1'>
                     <Image className='shadow-md  rounded-3xl' src={item.image} alt={item.title} width={250} height={100}/>
                     <p className='text-center font-bold'>{item.title}</p>
                     {session?<UserTag user={session?.user} />:<UserImage user={item}/>}

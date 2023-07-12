@@ -28,8 +28,9 @@ const UserInfo = () => {
   }, [session]);
 
   const getUserPost = async () => {
+    if (session!==null) {
     setPost([])
-    const q = query(collection(db, "pinterest"), where("email", "==", session.user.email));
+    const q = query(collection(db, "pinterest"), where("email", "==", session?.user.email));
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
@@ -40,6 +41,7 @@ const UserInfo = () => {
       console.log(doc.id, " => ", doc.data());
       console.log(setPost);
     });
+  }
   };
 
   const handleLogout = () => {
