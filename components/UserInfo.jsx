@@ -1,8 +1,8 @@
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Pin_img from "./Pin-docs/Pin_img";
-import { useSession, signOut} from "next-auth/react";
 import {
   getFirestore,
   collection,
@@ -13,31 +13,29 @@ import {
 import app from "@/utils/firebase";
 
 const UserInfo = () => {
-  const { data: session } = useSession();
+    const{data:session}= useSession()
   const router = useRouter();
   const db = getFirestore(app);
-  const [post, setPost] = useState([]);
-  // if (session == null) {
-  //   router.push("/");
-  // }
+  const [post, setPost] = useState([])
+  if (session == null) {
+    router.push("/");
+  }
+  console.log(post);
   useEffect(() => {
-    if (session !== null) {
-      getUserPost();
+    if(session!==null){
+        getUserPost();
     }
   }, [session]);
 
   const getUserPost = async () => {
-    setPost()
-    const q = query(
-      collection(db, "pinterest"),
-      where("email", "==", session?.user.email)
-    );
+    setPost([])
+    const q = query(collection(db, "pinterest"), where("email", "==", session.user.email));
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      let data = doc.data();
-      data.id = doc.id;
-      setPost((users) => [...users, data]);
+        let data = doc.data()
+        data.id = doc.id
+        setPost((users)=>[...users, data])
       // doc.data() is never undefined for query doc snapshots
       console.log(doc.id, " => ", doc.data());
       console.log(setPost);
@@ -71,7 +69,7 @@ const UserInfo = () => {
           </button>
         </div>
       </div>
-      <div>
+      <div >
         <Pin_img post={post} session={session} />
       </div>
     </>

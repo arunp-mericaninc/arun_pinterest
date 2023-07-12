@@ -1,9 +1,11 @@
+'use client'
 import Image from 'next/image'
 import React from 'react'
 import UserTag from '../UserTag';
 import UserImage from '../UserImage';
 
 const Pin_img = ({post,session}) => {
+    console.log(post);
     const handlePost=()=>{
 
     }
