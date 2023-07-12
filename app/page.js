@@ -18,7 +18,7 @@ export default function Home() {
     }
   },[session])
   const getPost = async()=>{
-    
+    setPost([])
 
 const querySnapshot = await getDocs(collection(db, "pinterest"));
 querySnapshot.forEach((doc) => {
