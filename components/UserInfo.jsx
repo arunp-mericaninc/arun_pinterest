@@ -17,9 +17,9 @@ const UserInfo = () => {
   const router = useRouter();
   const db = getFirestore(app);
   const [post, setPost] = useState([]);
-  if (session == null) {
-    router.push("/");
-  }
+  // if (session == null) {
+  //   router.push("/");
+  // }
   useEffect(() => {
     if (session !== null) {
       getUserPost();
