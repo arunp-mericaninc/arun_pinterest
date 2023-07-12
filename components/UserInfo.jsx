@@ -29,7 +29,7 @@ const UserInfo = () => {
   const getUserPost = async () => {
     const q = query(
       collection(db, "pinterest"),
-      where("email", "==", session.user.email)
+      where("email", "==", session?.user.email)
     );
 
     const querySnapshot = await getDocs(q);
