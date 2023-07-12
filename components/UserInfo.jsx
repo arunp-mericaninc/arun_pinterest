@@ -27,7 +27,7 @@ const UserInfo = () => {
   }, [session]);
 
   const getUserPost = async () => {
-    setPost([])
+    setPost()
     const q = query(
       collection(db, "pinterest"),
       where("email", "==", session?.user.email)
