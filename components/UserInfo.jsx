@@ -8,7 +8,8 @@ const UserInfo = ({ session }) => {
         router.push("/")
     }
   return (
-    <div className="flex flex-col items-center h-96 mt-4 gap-4">
+    <>
+    <div className="flex flex-col items-center mt-4 gap-4">
       <Image
         src={session?.user?.image}
         alt={session?.user?.name}
@@ -18,8 +19,22 @@ const UserInfo = ({ session }) => {
       />
       <p className="font-semibold text-2xl">{session?.user?.name}</p>
       <span>{session?.user?.email}</span>
-      <button className="bg-gray-200 p-2 font-semibold rounded-full">Share</button>
+      <div className="flex justify-between gap-4">
+        <button className="bg-gray-200 p-2 font-semibold rounded-full">
+          Share
+        </button>
+        <button
+          onClick={() => handleLogout()}
+          className="bg-gray-200 p-2 font-semibold rounded-full"
+        >
+          Logout
+        </button>
+      </div>
     </div>
+    <div >
+      <Pin_img post={post} session={session} />
+    </div>
+  </>
   );
 };
 
